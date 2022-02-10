@@ -11,6 +11,10 @@ class Advertisement(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+    
+
 class Images(models.Model):
     ad = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
     link = models.URLField(max_length=200)
