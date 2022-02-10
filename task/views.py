@@ -1,17 +1,19 @@
-from .models import Advertisement, Images
-from .serializers import AdSerializer, ImagesSerializer
+from .models import Ad, Image
+from .serializers import AdSerializer, ImageSerializer
 from rest_framework import mixins
 from rest_framework import generics
-class AdsListView(generics.ListCreateAPIView):
-    queryset = Advertisement.objects.all()
+
+
+class AdListView(generics.ListCreateAPIView):
+    queryset = Ad.objects.all()
     serializer_class = AdSerializer
 
 
-class AdsView(mixins.RetrieveModelMixin,
+class AdView(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
-    queryset = Advertisement.objects.all()
+    queryset = Ad.objects.all()
     serializer_class = AdSerializer
 
     def get(self, request, *args, **kwargs):
@@ -23,16 +25,16 @@ class AdsView(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-class ImagesCreateView(generics.ListCreateAPIView):
-    queryset = Images.objects.all()
-    serializer_class = ImagesSerializer
+class ImageCreateView(generics.ListCreateAPIView):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 
-class ImagesView(mixins.RetrieveModelMixin,
+class ImageView(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
                     generics.GenericAPIView):
-    queryset = Images.objects.all()
-    serializer_class = ImagesSerializer
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

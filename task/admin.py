@@ -1,4 +1,6 @@
 from django.contrib import admin
-from .models import Advertisement, Images
-admin.site.register(Advertisement)
-admin.site.register(Images)
+from .models import Ad, Image
+
+
+admin.site.register(Ad)
+admin.site.register(Image)

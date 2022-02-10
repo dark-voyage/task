@@ -1,12 +1,14 @@
 from rest_framework import serializers
-from .models import Advertisement, Images
+from .models import Ad, Image
+
+
 class AdSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Advertisement
+        model = Ad
         fields = '__all__'
         
-class ImagesSerializer(serializers.ModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Images
+        model = Image
         fields = '__all__'
 
