@@ -1,12 +1,24 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from .models import Advertisement
+from .serializers import AdSerializer
+from rest_framework import mixins
+from rest_framework import generics
+class AdsListView(generics.ListAPIView):
+    queryset = Advertisement.objects.all()
+    serializer_class = AdSerializer
 
-from task.models import Advertisement
-from task.serializers import AdSerializer
+    
+class AdsView(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    generics.GenericAPIView):
+    queryset = Advertisement.objects.all()
+    serializer_class = AdSerializer
 
-@api_view(['GET'])
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
-def home(request):
-    ads = Advertisement.objects.all()
-    serializer = AdSerializer(ads, many=True)
-    return Response(serializer.data)
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)

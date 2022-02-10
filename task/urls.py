@@ -1,6 +1,8 @@
-import imp
+from urllib import request
 from django.urls import path
-from .views import home
+from .views import AdsView, AdsListView
 urlpatterns = [
-    path('', home),
+    path('ads/', AdsListView.as_view()),
+    path('ads/<int:pk>/', AdsView.as_view()),
+
 ]
