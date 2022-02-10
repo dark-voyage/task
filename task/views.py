@@ -2,11 +2,11 @@ from .models import Advertisement
 from .serializers import AdSerializer
 from rest_framework import mixins
 from rest_framework import generics
-class AdsListView(generics.ListAPIView):
+class AdsListView(generics.ListCreateAPIView):
     queryset = Advertisement.objects.all()
     serializer_class = AdSerializer
 
-    
+
 class AdsView(mixins.RetrieveModelMixin,
                     mixins.UpdateModelMixin,
                     mixins.DestroyModelMixin,
