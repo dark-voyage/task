@@ -18,3 +18,9 @@ class Advertisement(models.Model):
 class Images(models.Model):
     ad = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
     link = models.URLField(max_length=200)
+
+    def save(self, *args, **kwargs):
+        if self.id == None: #Creating a new object
+            if Images.objects.filter(ad=self.ad).count() > 2:
+                raise Exception(f'{self.ad.name} has already 3 images. No more are allowed.')
+        return super(Images, self).save(*args, **kwargs)
