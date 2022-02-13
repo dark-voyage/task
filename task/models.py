@@ -15,7 +15,7 @@ class Ad(models.Model):
         verbose_name_plural = 'Advertisements'
 
 class Image(models.Model):
-    ad = models.ManyToManyField(Ad,related_name='ad')
+    ad = models.ForeignKey(Ad,on_delete=models.CASCADE, related_name='images')
     link = models.URLField(max_length=200)
 
     created_at = models.DateTimeField(auto_now_add=True)
