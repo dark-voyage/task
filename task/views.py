@@ -6,8 +6,9 @@ from rest_framework import filters
 class AdListView(generics.ListCreateAPIView):
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
-    # filter_backends = [filters.OrderingFilter]
-    # ordering_fields = ['price', 'created_at']
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['price', 'created_at']
+
 
 class AdRUDView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ImageSerializer
