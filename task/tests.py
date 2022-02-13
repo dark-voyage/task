@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Ad, Image
+
 
 class AnimalTestCase(TestCase):
     def setUp(self):
@@ -11,3 +11,4 @@ class AnimalTestCase(TestCase):
         test_image = Image.objects.get(ad=test_ad)
         self.assertEqual(test_image.ad, test_ad)
        
+# Create your tests here.
